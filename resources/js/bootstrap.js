@@ -23,7 +23,7 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-window.authEndpoint = 'http://localhost/larachat/broadcasting/auth';
+window.authEndpoint = 'https://chattenapp.herokuapp.com/broadcasting/auth';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
