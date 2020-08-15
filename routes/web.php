@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Chat route
 Route::get('/', function(){
-    return 'ada';
+    return view('pages.main');
 });
 
 // Authentication routes
