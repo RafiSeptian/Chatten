@@ -9,7 +9,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.rootURL = 'https://chattenapp.herokuapp.com'
 window.baseURL = 'https://chattenapp.herokuapp.com/api/v1'
-window.assetURL = 'https://chattenapp.herokuapp.com/public'
 window.token = localStorage.getItem('token') ? localStorage.getItem('token') : '';
 
 

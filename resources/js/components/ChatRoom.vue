@@ -54,7 +54,7 @@
         },
 
         created(){
-            this.assetURL = assetURL
+            this.assetURL = rootURL
 
             this.$root.$on('dataChat', (messages, user) => {
                 this.messages = messages

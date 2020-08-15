@@ -39,7 +39,7 @@
                 axios.get(`${baseURL}/message?token=${token}`)
                     .then(res => {
                         let users = res.data.users.map((user) => {
-                            user.avatar = `${assetURL}/${user.avatar}`
+                            user.avatar = `${rootURL}/${user.avatar}`
                             return user
                         })
 
