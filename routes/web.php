@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Chat route
 Route::get('/', function(){
     return view('pages.main');
-});
+})->middleware('auth');
 
 // Authentication routes
 Route::get('/login', 'AuthController@showLogin')->name('login')->middleware('guest');
