@@ -19,7 +19,15 @@ Route::get('/', function(){
 });
 
 // Authentication routes
-Route::get('/login', 'AuthController@showLogin')->name('login')->middleware('guest');
+Route::get('/another', function(){
+    return 'another route';
+});
+
+Route::get('/login', function(){
+   return 'login_page';
+});
+
+//Route::get('/login', 'AuthController@showLogin')->name('login')->middleware('guest');
 Route::post('/logout', 'AuthController@logout')->name('logout');
 
 // api messages
