@@ -14,16 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Chat route
-Route::get('/', function(){
+Route::get('/main', function(){
     return view('pages.main');
 });
 
 // Authentication routes
-Route::get('another', function(){
+Route::get('/another', function(){
     return 'another route';
 });
 
-Route::get('login', function(){
+Route::get('/login', function(){
    return 'login_page';
 });
 
