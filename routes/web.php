@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Chat route
-Route::get('/main', function(){
+Route::get('/', function(){
     return view('pages.main');
 });
 
