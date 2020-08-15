@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Chat route
 Route::get('/', function(){
-    return view('pages.main');
+    return 'ada';
 })->middleware('auth');
 
 // Authentication routes
@@ -32,8 +32,4 @@ Route::group(['prefix' => 'api/v1'], function(){
     });
 
     Route::resource('/message', 'ChatController')->except(['edit', 'create']);
-});
-
-Route::get('/php', function(){
-	return \Config::get('database.default');
 });
