@@ -11,6 +11,10 @@
 |
 */
 
+header('Access-Control-Allow-Origin: https://chattenapp.herokuapp.com/');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: *');
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
