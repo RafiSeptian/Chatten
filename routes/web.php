@@ -19,11 +19,11 @@ Route::get('/', function(){
 });
 
 // Authentication routes
-Route::get('/another', function(){
+Route::get('another', function(){
     return 'another route';
 });
 
-Route::get('/login', function(){
+Route::get('login', function(){
    return 'login_page';
 });
 
