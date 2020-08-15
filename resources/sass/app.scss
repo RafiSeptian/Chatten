@@ -1,0 +1,21 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+body{
+    background-color: #fafafa;
+}
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Sidebar
+@import 'sidebar';
+
+// Chat room
+@import 'chatroom';
+
+// Form styles
+@import 'form';
