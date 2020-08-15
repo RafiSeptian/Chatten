@@ -8,7 +8,7 @@
                 </h4>
             </div>
 
-            <h4 class="py-2 " v-else>Welcome to MeChat App</h4>
+            <h4 class="py-2 " v-else>Welcome to Chatten App</h4>
 
             <div class="hamburger-menu">
                 <div class="bar"></div>
