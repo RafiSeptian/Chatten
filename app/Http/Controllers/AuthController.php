@@ -49,6 +49,10 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ];
 
+        if(!$data || count($data) <= 3){
+            return Response::invalid(['msg' => 'Invalid Form !']);
+        }
+
         if($request->avatar){
             $data['avatar'] = 'users/' . $request->avatar . '.png';
         }

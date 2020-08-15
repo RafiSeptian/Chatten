@@ -77,6 +77,7 @@
         right:0;
 
         form{
+            width: 100%;
             display:flex;
             align-items:center;
             justify-content: space-around;
@@ -125,6 +126,8 @@
 
         #footer{
             form{
+                width: 100%;
+
                 input{
                     flex: 68%;
                 }
@@ -191,15 +194,16 @@
         }
 
         #footer{
-            padding: 15px 25px;
+            padding: 15px;
 
             form{
                 input{
-                    flex: 70%;
+                    flex: 68% !important;
                 }
 
                 button{
-                    flex: 25%;
+                    padding: 5px 10px;
+                    flex: 30% !important;
                 }
             }
         }

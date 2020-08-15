@@ -6,7 +6,19 @@
 
 require('./bootstrap');
 
+// import modules
+import Swal from 'sweetalert2'
+
 window.Vue = require('vue');
+window.Swal = Swal
+window.Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true
+})
+
 window.rootURL = 'https://chattenapp.herokuapp.com'
 window.baseURL = 'https://chattenapp.herokuapp.com/api/v1'
 window.token = localStorage.getItem('token') ? localStorage.getItem('token') : '';

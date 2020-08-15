@@ -121,10 +121,20 @@
                         window.token = res.data.user.login_token
                         localStorage.setItem('token', res.data.user.login_token)
 
-                        window.location.href = `${rootURL}`
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Signed in successfully',
+                            onDestroy: (toast) => {
+                                window.location.href = `${rootURL}`
+                            }
+                        })
                     })
                     .catch(err => {
-                        console.log(err.response)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: err.response.data.msg
+                        })
                     })
             },
 

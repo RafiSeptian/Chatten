@@ -97,7 +97,10 @@
                         .catch(err => console.log(err.response))
                 }
                 else{
-                    alert('please select contact first !')
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Please select contact first to send a message !'
+                    })
                 }
             }
         },

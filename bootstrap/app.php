@@ -11,7 +11,7 @@
 |
 */
 
-header('Access-Control-Allow-Origin: https://chattenapp.herokuapp.com/');
+header('Access-Control-Allow-Origin: https://chattenapp.herokuapp.com');
 header('Access-Control-Allow-Headers: *');
 header('Access-Control-Allow-Methods: *');
 
