@@ -27,7 +27,7 @@
 
         <div id="footer">
             <form @submit.prevent="postMessage" class="form-message">
-                <input type="text" name="message" id="message" placeholder="Type message..." v-model="chat.message">
+                <input type="text" name="message" id="message" placeholder="Type message..." autocomplete="off" v-model="chat.message">
                 <button type="submit" class="btn-send" :disabled="sending">
                     <i class="far fa-paper-plane"></i>
                     <span>Send</span>
