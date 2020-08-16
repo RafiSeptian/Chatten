@@ -33,7 +33,7 @@ class AuthController extends Controller
         // check if this user is logged in
         $user = User::whereUsername($request->username)->first();
         if($user->login_token !== NULL){
-            return response()->json(['msg' => 'User with this account has logged in !'], 401);
+            return response()->json(['msg' => 'This account is already logged in !'], 401);
         }
 
         if(Auth::attempt($credentials, true)){
