@@ -19,7 +19,7 @@ Route::get('/', function(){
 })->middleware('auth');
 
 // Authentication routes
-Route::get('/login', 'AuthController@showLogin')->name('login')->middleware('guest');
+Route::get('/login', 'AuthController@showLogin')->name('login');
 Route::post('/logout', 'AuthController@logout')->name('logout');
 
 // api messages
