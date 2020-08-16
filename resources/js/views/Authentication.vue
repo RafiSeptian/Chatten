@@ -21,7 +21,7 @@
                                         <label for="fullname" class="control-label">
                                             Fullname
                                         </label>
-                                        <input type="text" class="form-control" name="fullname" id="fullname" v-model="user.fullname">
+                                        <input type="text" class="form-control" name="fullname" id="fullname" v-model="user.name">
                                     </div>
 
                                     <div class="form-group">
@@ -96,7 +96,7 @@
         name: "Authentication",
 
         mounted(){
-            this.assetURL = assetURL
+            this.assetURL = rootURL
         },
 
         data(){
@@ -104,7 +104,7 @@
                 user:{
                     username:'',
                     password:'',
-                    fullname:'',
+                    name:'',
                     avatar:''
                 },
 
@@ -116,26 +116,37 @@
 
         methods:{
             postAuth(){
-                axios.post(`${baseURL}/auth/${ this.account ? 'login' : 'register' }`, this.user)
-                    .then(res => {
-                        window.token = res.data.user.login_token
-                        localStorage.setItem('token', res.data.user.login_token)
+                if(this.user.username !== '' && this.user.password !== ''){
+                    axios.post(`${baseURL}/auth/${ this.account ? 'login' : 'register' }`, this.user)
+                        .then(res => {
+                            window.token = res.data.user.login_token
+                            localStorage.setItem('token', res.data.user.login_token)
 
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Signed in successfully',
-                            onDestroy: (toast) => {
-                                window.location.href = `${rootURL}`
+                            Toast.fire({
+                                icon: 'success',
+                                title: `${res.data.msg}`,
+                                onDestroy: (toast) => {
+                                    window.location.href = `${rootURL}`
+                                }
+                            })
+                        })
+                        .catch(err => {
+                            if(err.response.status === 401){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: `${err.response.data.msg}`
+                                })
+                            }
+                            else if(err.response.status === 422){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: `The given data was invalid or username has already been taken`
+                                })
                             }
                         })
-                    })
-                    .catch(err => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: err.response.data.msg
-                        })
-                    })
+                }
             },
 
             toggleStatus(){
