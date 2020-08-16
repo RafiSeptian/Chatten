@@ -30,17 +30,17 @@ class AuthController extends Controller
             'password' => $request->password
         ];
 
-        // check if this user is logged in
-        $user = User::whereUsername($request->username)->first();
-        if($user->login_token !== NULL){
-            return response()->json(['msg' => 'This account is already logged in !'], 401);
-        }
-
         if(Auth::attempt($credentials, true)){
             $user = Auth::user();
-            $user->update(['login_token' => bcrypt($user->id)]);
 
-            return Response::success(['msg' => 'Login Successfully', 'user' => $user]);
+            // check if this user is logged in
+            if($user->login_token !== NULL){
+                return Response::invalid(['msg' => 'This account is already logged in !']);
+            }
+
+            // set user token
+            $user->update(['login_token' => bcrypt($user->id)]);
+            return Response::success(['msg' => 'Sign in successfully', 'user' => $user]);
         }
 
         return Response::invalid(['msg' => 'Invalid Login !']);
@@ -49,15 +49,19 @@ class AuthController extends Controller
 
     // post register
     public function register(Request $request){
+
+        $this->validate($request, [
+            'username' => 'required|unique:users,username',
+            'name' => 'required',
+            'password' => 'required'
+        ]);
+
         $data = [
             'username' => $request->username,
-            'name' => $request->fullname,
+            'name' => $request->name,
             'password' => bcrypt($request->password)
         ];
 
-        if(!$data || count($data) <= 3){
-            return Response::invalid(['msg' => 'Invalid Form !']);
-        }
 
         if($request->avatar){
             $data['avatar'] = 'users/' . $request->avatar . '.png';
@@ -71,7 +75,7 @@ class AuthController extends Controller
 
         Auth::loginUsingId($user->id, true);
 
-        return response()->json(['msg' => 'Register Successfully', 'user' => $user], 200);
+        return response()->json(['msg' => 'Sign up successfully', 'user' => $user], 200);
     }
 
     public function logout(Request $request){

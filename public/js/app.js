@@ -2191,14 +2191,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Authentication",
   mounted: function mounted() {
-    this.assetURL = assetURL;
+    this.assetURL = rootURL;
   },
   data: function data() {
     return {
       user: {
         username: '',
         password: '',
-        fullname: '',
+        name: '',
         avatar: ''
       },
       account: true,
@@ -2207,23 +2207,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     postAuth: function postAuth() {
-      axios.post("".concat(baseURL, "/auth/").concat(this.account ? 'login' : 'register'), this.user).then(function (res) {
-        window.token = res.data.user.login_token;
-        localStorage.setItem('token', res.data.user.login_token);
-        Toast.fire({
-          icon: 'success',
-          title: 'Signed in successfully',
-          onDestroy: function onDestroy(toast) {
-            window.location.href = "".concat(rootURL);
+      if (this.user.username !== '' && this.user.password !== '') {
+        axios.post("".concat(baseURL, "/auth/").concat(this.account ? 'login' : 'register'), this.user).then(function (res) {
+          window.token = res.data.user.login_token;
+          localStorage.setItem('token', res.data.user.login_token);
+          Toast.fire({
+            icon: 'success',
+            title: "".concat(res.data.msg),
+            onDestroy: function onDestroy(toast) {
+              window.location.href = "".concat(rootURL);
+            }
+          });
+        })["catch"](function (err) {
+          if (err.response.status === 401) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: "".concat(err.response.data.msg)
+            });
+          } else if (err.response.status === 422) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: "The given data was invalid or username has already been taken"
+            });
           }
         });
-      })["catch"](function (err) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: err.response.data.msg
-        });
-      });
+      }
     },
     toggleStatus: function toggleStatus() {
       if (this.account) {
@@ -48040,8 +48050,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.user.fullname,
-                              expression: "user.fullname"
+                              value: _vm.user.name,
+                              expression: "user.name"
                             }
                           ],
                           staticClass: "form-control",
@@ -48050,17 +48060,13 @@ var render = function() {
                             name: "fullname",
                             id: "fullname"
                           },
-                          domProps: { value: _vm.user.fullname },
+                          domProps: { value: _vm.user.name },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(
-                                _vm.user,
-                                "fullname",
-                                $event.target.value
-                              )
+                              _vm.$set(_vm.user, "name", $event.target.value)
                             }
                           }
                         })
