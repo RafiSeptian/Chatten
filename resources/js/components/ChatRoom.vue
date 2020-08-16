@@ -88,7 +88,7 @@
             postMessage(){
                 if(this.chat.to !== null){
                     this.sending = true
-                    axios.post(`${baseURL}/message?token=${token}`, this.chat)
+                    axios.post(`${baseURL}/message?token=${this.$cookies.get('token')}`, this.chat)
                         .then(res => {
                             this.messages.push({
                                 to: this.chat.to,

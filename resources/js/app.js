@@ -9,7 +9,7 @@ require('./bootstrap');
 // import modules
 import Swal from 'sweetalert2'
 import VueCookies from 'vue-cookies'
-window.Vue = require('vue');
+import Vue from 'vue'
 
 Vue.use(VueCookies)
 
@@ -24,8 +24,6 @@ window.Toast = Swal.mixin({
 
 window.rootURL = 'https://chattenapp.herokuapp.com'
 window.baseURL = 'https://chattenapp.herokuapp.com/api/v1'
-window.token = this.$cookies.get('token') ? this.$cookies.get('token') : '';
-
 
 // Register components
 Vue.component('Authentication', require('./views/Authentication.vue').default)

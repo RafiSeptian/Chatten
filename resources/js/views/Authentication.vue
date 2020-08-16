@@ -123,7 +123,7 @@
                 if(this.user.username !== '' && this.user.password !== ''){
                     axios.post(`${baseURL}/auth/${ this.account ? 'login' : 'register' }`, this.user)
                         .then(res => {
-                            window.token = res.data.user.login_token
+                            // set cookies token
                             this.$cookies.set('token', res.data.user.login_token, Infinity)
 
                             Toast.fire({

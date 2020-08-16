@@ -36,7 +36,7 @@
 
         methods:{
             getAllUsers(){
-                axios.get(`${baseURL}/message?token=${token}`)
+                axios.get(`${baseURL}/message?token=${this.$cookies.get('token')}`)
                     .then(res => {
                         let users = res.data.users.map((user) => {
                             user.avatar = `${rootURL}/${user.avatar}`
@@ -49,7 +49,7 @@
             },
 
             showMessage(id){
-                axios.get(`${baseURL}/message/${id}?token=${token}`)
+                axios.get(`${baseURL}/message/${id}?token=${this.$cookies.get('token')}`)
                     .then(res =>{
                         this.$root.$emit('dataChat', res.data.messages, res.data.user)
                     })
