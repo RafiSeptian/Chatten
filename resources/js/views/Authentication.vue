@@ -95,7 +95,11 @@
     export default {
         name: "Authentication",
 
-        mounted(){
+        created(){
+            if(this.$cookies.get('token')){
+                window.location.href = `${rootURL}`
+            }
+
             this.assetURL = rootURL
         },
 
@@ -120,7 +124,7 @@
                     axios.post(`${baseURL}/auth/${ this.account ? 'login' : 'register' }`, this.user)
                         .then(res => {
                             window.token = res.data.user.login_token
-                            localStorage.setItem('token', res.data.user.login_token)
+                            this.$cookies.set('token', res.data.user.login_token, Infinity)
 
                             Toast.fire({
                                 icon: 'success',

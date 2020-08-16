@@ -28,7 +28,7 @@
         <div id="footer">
             <form @submit.prevent="postMessage" class="form-message">
                 <input type="text" name="message" id="message" placeholder="Type message..." v-model="chat.message">
-                <button type="submit" class="btn-send">
+                <button type="submit" class="btn-send" :disabled="sending">
                     <i class="far fa-paper-plane"></i>
                     <span>Send</span>
                 </button>
@@ -79,13 +79,15 @@
                 chat:{
                     to: null,
                     message: ''
-                }
+                },
+                sending: false
             }
         },
 
         methods:{
             postMessage(){
                 if(this.chat.to !== null){
+                    this.sending = true
                     axios.post(`${baseURL}/message?token=${token}`, this.chat)
                         .then(res => {
                             this.messages.push({
@@ -95,6 +97,9 @@
                             this.chat.message = ''
                         })
                         .catch(err => console.log(err.response))
+                        .finally((data) => {
+                            this.sending = false
+                        })
                 }
                 else{
                     Swal.fire({

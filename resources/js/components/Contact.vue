@@ -12,7 +12,7 @@
                 <div class="detail">
                     <h4>{{ user.name }}</h4>
                     <span>
-                        Online
+                        Offline
                     </span>
                 </div>
             </div>

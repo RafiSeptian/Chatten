@@ -22,7 +22,7 @@
         name: "ChatApp",
 
         created() {
-            if(!localStorage.getItem('token')){
+            if(!this.$cookies.get('token')){
                 window.location.href = `${rootURL}/login`
             }
         },
