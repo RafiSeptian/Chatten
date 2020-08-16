@@ -63,4 +63,9 @@
     .brand h3{
         font-weight: bold !important;
     }
+
+    #contact-list{
+        max-height: 95vh;
+        overflow-y: scroll;
+    }
 </style>
