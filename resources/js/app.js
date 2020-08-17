@@ -22,8 +22,8 @@ window.Toast = Swal.mixin({
     timerProgressBar: true
 })
 
-window.rootURL = 'https://chattenapp.herokuapp.com'
-window.baseURL = 'https://chattenapp.herokuapp.com/api/v1'
+window.rootURL = 'http://localhost:8000'
+window.baseURL = 'http://localhost:8000/api/v1'
 
 // Register components
 Vue.component('Authentication', require('./views/Authentication.vue').default)

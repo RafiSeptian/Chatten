@@ -23,8 +23,6 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-window.authEndpoint = 'https://chattenapp.herokuapp.com/broadcasting/auth';
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -40,7 +38,6 @@ const pusher = new Pusher('190807f14db2bba91bef', {
 });
 
 window.Echo = new Echo({
-	authEndpoint: authEndpoint,
     broadcaster: 'pusher',
     key: '190807f14db2bba91bef',
     cluster: 'ap1',
